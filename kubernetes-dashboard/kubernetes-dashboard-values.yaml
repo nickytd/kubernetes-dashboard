@@ -1,0 +1,49 @@
+extraArgs:
+  - --enable-insecure-login
+
+ingress:
+  enabled: true
+  hosts:
+    - kubernetes-dashbord.local
+  tls:
+    - secretName: kubernetes-dashboard-tls
+      hosts:
+        - kubernetes-dashboard.local
+
+protocolHttp: true
+
+service:
+  type: ClusterIP
+  externalPort: 8080  
+
+settings:
+  ## Cluster name that appears in the browser window title if it is set
+  clusterName: "kind"
+  ## Max number of items that can be displayed on each list page
+  itemsPerPage: 10
+  ## Number of seconds between every auto-refresh of logs
+  logsAutoRefreshTimeInterval: 5
+  ## Number of seconds between every auto-refresh of every resource. Set 0 to disable
+  resourceAutoRefreshTimeInterval: 5
+  ## Hide all access denied warnings in the notification panel
+  disableAccessDeniedNotifications: false
+
+## Metrics Scraper
+## Container to scrape, store, and retrieve a window of time from the Metrics Server.
+## refs: https://github.com/kubernetes-sigs/dashboard-metrics-scraper
+metricsScraper:
+  enabled: true
+  
+metrics-server:
+  enabled: true
+  ## Example for additional args
+  args:
+    - --kubelet-insecure-tls
+
+rbac:
+  # Specifies whether namespaced RBAC resources (Role, Rolebinding) should be created
+  create: true
+  clusterRoleMetrics: true
+
+serviceAccount:
+  name: kubernetes-dashboard

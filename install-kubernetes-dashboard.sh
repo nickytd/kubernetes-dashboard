@@ -31,7 +31,13 @@ helm upgrade kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard \
 kubectl apply -f ${dir}/kubernetes-dashboard/kubernetes-dashboard-crb.yaml -n kubernetes-dashboard \
   --dry-run=client -o yaml | kubectl apply -f -      
 
+kubectl wait --for=condition=ready pod -l app.kubernetes.io/component=kubernetes-dashboard  \
+   -n kubernetes-dashboard
+
 kubectl -n kubernetes-dashboard describe secret  \
   $(kubectl -n kubernetes-dashboard get secret | grep kubernetes-dashboard-token | awk '{print $1}')      
 
+echo ""
 echo "token for kubernetes-dashboard login"
+
+echo "Application URL https://kubernetes-dashboard.local"

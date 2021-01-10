@@ -4,7 +4,7 @@ extraArgs:
 ingress:
   enabled: true
   hosts:
-    - kubernetes-dashbord.local
+    - kubernetes-dashboard.local
   tls:
     - secretName: kubernetes-dashboard-tls
       hosts:
@@ -21,6 +21,8 @@ settings:
   clusterName: "kind"
   ## Max number of items that can be displayed on each list page
   itemsPerPage: 10
+  ## Max number of labels
+  labelsLimits: 10
   ## Number of seconds between every auto-refresh of logs
   logsAutoRefreshTimeInterval: 5
   ## Number of seconds between every auto-refresh of every resource. Set 0 to disable

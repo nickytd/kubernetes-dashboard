@@ -4,11 +4,11 @@ extraArgs:
 ingress:
   enabled: true
   hosts:
-    - kubernetes-dashboard.local
+    - dashboard.local.dev
   tls:
-    - secretName: kubernetes-dashboard-tls
-      hosts:
-        - kubernetes-dashboard.local
+  - hosts:
+    - ashboard.local.dev
+    secretName: dashboard-tls
 
 protocolHttp: true
 

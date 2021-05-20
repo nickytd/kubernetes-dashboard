@@ -3,6 +3,10 @@
 set -eo pipefail
 
 dir=$(dirname $0)
+source $dir/.includes.sh
+
+check_executables
+check_helm_chart "kubernetes-dashboard/kubernetes-dashboard"
 
 kubectl create namespace kubernetes-dashboard \
   --dry-run=client -o yaml | kubectl apply -f -
